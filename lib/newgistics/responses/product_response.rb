@@ -1,6 +1,4 @@
 module Newgistics
-  module Responses
-    class ProductResponse < Newgistics::Response
-    end
+  class ProductResponse < Newgistics::Response
   end
 end

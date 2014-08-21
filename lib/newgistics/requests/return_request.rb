@@ -1,11 +1,9 @@
 module Newgistics
-  module Requests
-    class ReturnRequest < Matey::Request
-      attr_accessor :rma
+  class ReturnRequest < Newgistics::Request
+    attr_accessor :rma
 
-      def initialize(rma)
-        self.rma = rma
-      end
+    def initialize(rma)
+      self.rma = rma
     end
   end
 end

@@ -1,8 +1,8 @@
-module Matey
+module Newgistics
   class Response
     attr_accessor :response
 
-    def initalize(response)
+    def initialize(response)
       @response = response
     end
 

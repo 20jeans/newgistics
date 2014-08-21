@@ -2,4 +2,5 @@ doctype xml
 products(apiKey=ENV['NEWGISTICS_KEY'])
   - products.each do |product|
     product
+      description= product.name
       sku= product.sku

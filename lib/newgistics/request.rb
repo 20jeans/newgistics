@@ -11,7 +11,7 @@ module Newgistics
 
     def render(options = {})
       options.reverse_merge!(DEFAULTS)
-      template = Tilt.new("lib/newgistics/views#{self.class.name.gsub('Newgistics','').underscore}.slim")
+      template = Tilt.new("#{root}/#{self.class.name.gsub('Newgistics','').underscore}.slim")
       template.render(self, options: options)
     end
 
@@ -19,8 +19,12 @@ module Newgistics
 
     def partial(name, options = {})
       carrier = self.class.to_s.split('::')[1]
-      template = Tilt.new("lib/newgistics/views/partials/_#{name}.slim")
+      template = Tilt.new("#{root}/partials/_#{name}.slim")
       template.render(self, options)
+    end
+
+    def root
+      "#{File.dirname(__FILE__)}/views"
     end
   end
 end

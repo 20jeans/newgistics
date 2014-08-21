@@ -1,6 +1,6 @@
 module Newgistics
   module Responses
-    class ManifestResponse < Newgistics::Response
+    class InventoryResponse < Newgistics::Response
     end
   end
 end

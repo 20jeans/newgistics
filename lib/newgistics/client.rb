@@ -13,14 +13,14 @@ module Newgistics
       @test = config[:test] || ENV['TEST_MODE'] || false
     end
 
-    def list_manifests(options = {})
+    def list_inventory(options = {})
       self.last_response = client.get do |req|
-        req.url '/manifests.aspx'
+        req.url '/inventory.aspx'
         req.params = {
           key: ENV['NEWGISTICS_KEY']
         }.merge(options)
       end
-      ManifestResponse.new(last_response)
+      InventoryResponse.new(last_response)
     end
 
     def create_products(products)

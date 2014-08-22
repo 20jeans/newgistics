@@ -1,56 +1,35 @@
 doctype xml
 Orders(apiKey=ENV['NEWGISTICS_KEY'])
-  Order(orderID="XML001")
+  Order(orderID=shipment.number)
     CustomerInfo
-      Company Newgistics Fulfillment
-      FirstName John
-      LastName Doe
-      Address1 22100 E 26th Ave, #100
-      Address2
-      City Aurora
-      State CO
-      Zip 80019
-      Country US
-      Email jdoe@newgistics.com
-      Phone (303)662-1041
-      Fax
-      IsResidential YES
-    DropShipInfo
-      CompanyName
-      Address
-      City
-      State
-      Zip
+      - shipment.ship_address do |address|
+        FirstName= address.first_name
+        LastName= address.last_name
+        Address1= address.address1
+        Address2= address.address2
+        City= address.city
+        State= address.state
+        Zip= address.postal_code
+        Country= address.country
+        Email= shipment.email
+        Phone= address.phone
+        IsResidential= (address.type == 'residential')
     AllowDuplicate
-    OrderDate 02/24/2009
-    ShipMethod UPSGR
-    InfoLine
-    Reference1
-    Reference2
-    RequiresSignature YES
-    IsInsured
-    InsuredValue
-    Customs_ShipmentContents
-    Customs_DeclaredValue
-    Customs_CountryOfOrigin
-    AddGiftWrap
-    GiftMessage
-    IsCOD
-    CODAmount
-    CODCashiersOnly
-    CODAddToShipping
-    IsBill3rdParty
-    Bill3rdPartyAccountNum
-    HoldForAllInventory
+    OrderDate= shipment.completed_at.strftime('%m/%d/%Y')
+    ShipMethod= shipment.ship_method
+    InfoLine= shipment.options[:info]
+    RequiresSignature= shipment.options[:signature]
+    IsInsured= shipment.options[:insured]
+    InsuredValue= shipment.options[:insured_value]
+    / Customs_ShipmentContents
+    / Customs_DeclaredValue
+    / Customs_CountryOfOrigin
+    AddGiftWrap= shipment.options[:gift_wrap]
+    GiftMessage= shipment.options[:gift_message]
     CustomFields
     Items
-      Item
-        SKU PRODUCT-SKU-001
-        Qty 3
-        CustomFields
-      Item
-        SKU PRODUCT-SKU-004
-        Qty 1
-        CustomFields
-    PdfInserts
-      PdfInsert/
+      - shipment.line_items.each do |item|
+        Item
+          SKU= item.sku
+          Qty= item.quantity
+          CustomFields

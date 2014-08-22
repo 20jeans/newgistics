@@ -1,11 +1,10 @@
 doctype xml
 Returns(apiKey=ENV['NEWGISTICS_KEY'])
-  - rmas.each do |rma|
-    Return(id=rma.order_id)
-      RMA= rma.number
-      Comments= rma.reason
-      Items
-        - rmas.line_items do |item|
-          Item
-            SKU= item.sku
-            Qty= item.quantity
+  Return(id=rma.order_id)
+    RMA= rma.number
+    Comments= rma.reason
+    Items
+      - rmas.line_items do |item|
+        Item
+          SKU= item.sku
+          Qty= item.quantity

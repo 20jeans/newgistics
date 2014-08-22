@@ -1,8 +1,9 @@
 module Newgistics
   class Product
-    include ActiveModel::Validations
+    include Virtus.model(mass_assignment: false)
 
-    attr_accessor :name, :sku
+    attribute :name, String
+    attribute :sku, String
 
     validates :name, presence: true
     validates :sku, presence: true

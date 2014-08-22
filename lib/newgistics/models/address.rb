@@ -1,17 +1,17 @@
 module Newgistics
   class Address
+    include Virtus
     include ActiveModel::Validations
 
-    attr_accessor :name,
-                  :address1,
-                  :address2,
-                  :city,
-                  :state,
-                  :postal_code,
-                  :country,
-                  :phone,
-                  :fax,
-                  :type
+    attribute :name, String
+    attribute :address1, String
+    attribute :address2, String
+    attribute :city, String
+    attribute :state, String
+    attribute :postal_code, String
+    attribute :country, String
+    attribute :phone, String
+    attribute :type, String
 
     alias_method :zip, :postal_code
     alias_method :postal, :postal_code

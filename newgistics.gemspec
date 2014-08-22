@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "nokogiri"
   spec.add_dependency "slim"
   spec.add_dependency "tilt"
+  spec.add_dependency "virtus"
 
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rake"

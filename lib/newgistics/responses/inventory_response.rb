@@ -1,6 +1,4 @@
 module Newgistics
-  module Responses
-    class InventoryResponse < Newgistics::Response
-    end
+  class InventoryResponse < Newgistics::Response
   end
 end

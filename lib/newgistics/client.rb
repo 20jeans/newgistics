@@ -5,7 +5,6 @@ module Newgistics
   class Client
     TEST_URL = 'https://apistaging.newgisticsfulfillment.com'.freeze
     LIVE_URL = 'https://api.newgisticsfulfillment.com'.freeze
-    include ActiveModel::Validations
 
     attr_accessor :test, :last_request, :last_response
 

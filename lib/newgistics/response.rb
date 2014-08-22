@@ -7,7 +7,7 @@ module Newgistics
     end
 
     def doc
-      @_doc ||= Nokogiri::XML(response.body)
+      @_doc ||= Nokogiri::XML(response.body.gsub("\r\n",''))
     end
   end
 end

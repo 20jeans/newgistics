@@ -26,5 +26,5 @@ module Newgistics
   autoload :ProductResponse, "newgistics/responses/product_response"
   autoload :ReturnResponse, "newgistics/responses/return_response"
   autoload :ShipmentResponse, "newgistics/responses/shipment_response"
-  autoload :ManifestResponse, "newgistics/responses/manifest_response"
+  autoload :InventoryResponse, "newgistics/responses/inventory_response"
 end

@@ -1,6 +1,8 @@
 $:.unshift File.dirname(__FILE__)
 
 require "virtus"
+require "dotenv"
+
 Dotenv.load
 
 require "newgistics/version"

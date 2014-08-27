@@ -1,10 +1,11 @@
 $:.unshift File.dirname(__FILE__)
 
-require 'dotenv'
+require "virtus"
 Dotenv.load
 
 require "newgistics/version"
 require "active_support/core_ext"
+require "virtus"
 
 module Newgistics
   autoload :Client, "newgistics/client"

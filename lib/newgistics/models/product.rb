@@ -8,6 +8,7 @@ module Newgistics
     attribute :upc, String
     attribute :country, String
     attribute :price, String
+    attribute :harmonization_code, String
 
     validates :sku, presence: true
   end

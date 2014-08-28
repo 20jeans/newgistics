@@ -5,8 +5,10 @@ module Newgistics
 
     attribute :name, String
     attribute :sku, String
+    attribute :upc, String
+    attribute :country, String
+    attribute :price, String
 
-    validates :name, presence: true
     validates :sku, presence: true
   end
 end

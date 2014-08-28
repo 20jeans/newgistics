@@ -23,21 +23,23 @@ module Newgistics
     end
 
     def create_products(products)
-      request('/post_products.aspx', ProductRequest, ProductResponse)
+      self.last_request = ProductRequest.new(products)
+      send_request('/post_products.aspx', ProductResponse)
     end
 
     def create_shipment(shipment)
-      request('/post_shipments.aspx', ShipmentRequest, ShipmentResponse)
+      self.last_request = ShipmentRequest.new(shipment)
+      send_request('/post_shipments.aspx', ShipmentResponse)
     end
 
     def create_return(rma)
-      request('/post_inbound_returns.aspx', ReturnRequest, ReturnResponse)
+      self.last_request = ReturnRequest.new(rma)
+      send_request('/post_inbound_returns.aspx', ReturnResponse)
     end
 
     protected
 
-    def request(url, request_class, response_class)
-      self.last_request = request_class.new(products)
+    def send_request(url, response_class)
       return last_request.errors unless last_request.valid?
       self.last_response = client.post do |req|
         req.url url

@@ -40,7 +40,7 @@ module Newgistics
     protected
 
     def send_request(url, response_class)
-      return last_request.errors unless last_request.valid?
+      return false unless last_request.valid?
       self.last_response = client.post do |req|
         req.url url
         req.body = last_request.render

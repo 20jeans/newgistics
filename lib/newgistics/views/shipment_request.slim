@@ -2,18 +2,17 @@ doctype xml
 Orders(apiKey=ENV['NEWGISTICS_KEY'])
   Order(orderID=shipment.number)
     CustomerInfo
-      - shipment.ship_address do |address|
-        FirstName= address.first_name
-        LastName= address.last_name
-        Address1= address.address1
-        Address2= address.address2
-        City= address.city
-        State= address.state
-        Zip= address.postal_code
-        Country= address.country
-        Email= shipment.email
-        Phone= address.phone
-        IsResidential= (address.type == 'residential')
+      FirstName= shipment[:ship_address].firstname
+      LastName= shipment[:ship_address].lastname
+      Address1= shipment[:ship_address].address1
+      Address2= shipment[:ship_address].address2
+      City= shipment[:ship_address].city
+      State= shipment[:ship_address].state
+      Zip= shipment[:ship_address].postal_code
+      Country= shipment[:ship_address].country
+      Email= shipment.email
+      Phone= shipment[:ship_address].phone
+      IsResidential= (shipment[:ship_address].type == 'residential')
     AllowDuplicate
     OrderDate= shipment.completed_at.strftime('%m/%d/%Y')
     ShipMethod= shipment.ship_method
@@ -30,6 +29,6 @@ Orders(apiKey=ENV['NEWGISTICS_KEY'])
     Items
       - shipment.line_items.each do |item|
         Item
-          SKU= item.sku
-          Qty= item.quantity
+          SKU= item[:sku]
+          Qty= item[:quantity]
           CustomFields

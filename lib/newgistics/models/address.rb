@@ -3,7 +3,8 @@ module Newgistics
     include Virtus
     include ActiveModel::Validations
 
-    attribute :name, String
+    attribute :firstname, String
+    attribute :lastname, String
     attribute :address1, String
     attribute :address2, String
     attribute :city, String

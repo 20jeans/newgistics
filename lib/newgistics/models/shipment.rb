@@ -1,6 +1,6 @@
 module Newgistics
   class Shipment
-    include Virtus.model(mass_assignment: false)
+    include Virtus.model(mass_assignment: true)
     include ActiveModel::Validations
 
     attribute :number, String

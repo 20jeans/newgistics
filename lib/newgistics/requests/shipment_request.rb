@@ -3,7 +3,7 @@ module Newgistics
     attr_accessor :shipment
 
     def initialize(shipment)
-      self.shipment = shipment
+      self.shipment = Shipment.new(shipment)
     end
 
     def valid?

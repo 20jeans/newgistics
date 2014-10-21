@@ -1,12 +1,7 @@
-require "active_model"
 require "tilt"
 
 module Newgistics
   class Request
-    include ActiveModel::Validations
-
-    DEFAULTS = {}
-
     attr_accessor :client
 
     def render(options = {})

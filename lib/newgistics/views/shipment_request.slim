@@ -19,17 +19,8 @@ Orders(apiKey=ENV['NEWGISTICS_KEY'])
     ShipMethod= shipment.ship_method
     InfoLine= shipment.options[:info]
     RequiresSignature= shipment.options[:signature]
-    IsInsured= shipment.options[:insured]
-    InsuredValue= shipment.options[:insured_value]
-    / Customs_ShipmentContents
-    / Customs_DeclaredValue
-    / Customs_CountryOfOrigin
-    AddGiftWrap= shipment.options[:gift_wrap]
-    GiftMessage= shipment.options[:gift_message]
-    CustomFields
     Items
       - shipment.line_items.each do |item|
         Item
           SKU= item.sku
           Qty= item.quantity
-          CustomFields

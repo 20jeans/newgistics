@@ -1,6 +1,6 @@
 module Newgistics
   class Address
-    include Virtus
+    include Virtus.model(mass_assignment: false)
     include ActiveModel::Validations
 
     attribute :name, String

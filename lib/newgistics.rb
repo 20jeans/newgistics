@@ -29,4 +29,5 @@ module Newgistics
   autoload :ReturnResponse, "newgistics/responses/return_response"
   autoload :ShipmentResponse, "newgistics/responses/shipment_response"
   autoload :InventoryResponse, "newgistics/responses/inventory_response"
+  autoload :ShipmentStatusResponse, "newgistics/responses/shipment_status_response"
 end

@@ -9,7 +9,13 @@ module Newgistics
     attr_accessor :test, :last_request, :last_response
 
     def initialize(config = {})
-      @test = config[:test] || ENV['TEST_MODE'] || false
+      @test = if config.key?(:test)
+        config[:test]
+      elsif ENV['TEST_MODE'] == 'false'
+        false
+      elsif ENV['TEST_MODE'] == 'true'
+        true
+      end
     end
 
     def list_inventory(options = {})
@@ -35,6 +41,16 @@ module Newgistics
     def create_return(rma)
       self.last_request = ReturnRequest.new(rma)
       send_request('/post_inbound_returns.aspx', ReturnResponse)
+    end
+
+    def shipment_status(shipment_id)
+      self.last_response = client.get '/shipments.aspx' do |req|
+        req.params = {
+          key: ENV['NEWGISTICS_KEY'],
+          shipmentId: shipment_id
+        }
+      end
+      ShipmentStatusResponse.new(last_response)
     end
 
     protected

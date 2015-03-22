@@ -11,10 +11,10 @@ module Newgistics
     def initialize(config = {})
       @test = if config.key?(:test)
         config[:test]
-      elsif ENV['TEST_MODE'] == 'false'
-        false
       elsif ENV['TEST_MODE'] == 'true'
         true
+      else
+        false
       end
     end
 

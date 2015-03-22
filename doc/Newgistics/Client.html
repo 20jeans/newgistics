@@ -1,0 +1,1004 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Newgistics::Client
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!Newgistics/Client.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (C)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Newgistics.html" title="Newgistics (module)">Newgistics</a></span></span>
+     &raquo; 
+    <span class="title">Client</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Newgistics::Client
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Newgistics::Client</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/newgistics/client.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="TEST_URL-constant" class="">TEST_URL =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>The base url for the test environment</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://apistaging.newgisticsfulfillment.com</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="LIVE_URL-constant" class="">LIVE_URL =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>The base url for the production environment</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://api.newgisticsfulfillment.com</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#last_request-instance_method" title="#last_request (instance method)">- (Object) <strong>last_request</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Stores the most recent request made to newgistics.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#last_response-instance_method" title="#last_response (instance method)">- (Object) <strong>last_response</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Stores the most recent response received from newgistics.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test-instance_method" title="#test (instance method)">- (Object) <strong>test</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A boolean to determine whether the client is in test mode.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_products-instance_method" title="#create_products (instance method)">- (Newgistics::ProductResponse) <strong>create_products</strong>(products) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a new product(s) in newgistics.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_return-instance_method" title="#create_return (instance method)">- (Newgistics::ReturnResponse) <strong>create_return</strong>(rma) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a new return in newgistics.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_shipment-instance_method" title="#create_shipment (instance method)">- (Newgistics::ShipmentResponse) <strong>create_shipment</strong>(shipment) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a new shipment in newgistics.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Client) <strong>initialize</strong>(config = {}) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Client.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#list_inventory-instance_method" title="#list_inventory (instance method)">- (Newgistics::InventoryResponse) <strong>list_inventory</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Lists the inventory currently in newgistics.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shipment_status-instance_method" title="#shipment_status (instance method)">- (Newgistics::ShipmentStatusResponse) <strong>shipment_status</strong>(shipment_id) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Check the status of a shipment in newgistics.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Newgistics::Client (class)">Client</a></span></tt>) <strong>initialize</strong>(config = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of Client</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/newgistics/client.rb', line 18</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='ivar'>@test</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='symbol'>:test</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='symbol'>:test</span><span class='rbracket'>]</span>
+  <span class='kw'>elsif</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>TEST_MODE</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>true</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>true</span>
+  <span class='kw'>else</span>
+    <span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="last_request=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="last_request-instance_method">
+  
+    - (<tt>Object</tt>) <strong>last_request</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Stores the most recent request made to newgistics</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/newgistics/client.rb', line 14</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_last_request'>last_request</span>
+  <span class='ivar'>@last_request</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="last_response=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="last_response-instance_method">
+  
+    - (<tt>Object</tt>) <strong>last_response</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Stores the most recent response received from newgistics</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+16
+17
+18</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/newgistics/client.rb', line 16</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_last_response'>last_response</span>
+  <span class='ivar'>@last_response</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="test=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="test-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>A boolean to determine whether the client is in test mode</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/newgistics/client.rb', line 12</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_test'>test</span>
+  <span class='ivar'>@test</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="create_products-instance_method">
+  
+    - (<tt><span class='object_link'><a href="ProductResponse.html" title="Newgistics::ProductResponse (class)">Newgistics::ProductResponse</a></span></tt>) <strong>create_products</strong>(products) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates a new product(s) in newgistics</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>products</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Product.html" title="Newgistics::Product (class)">Newgistics::Product</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>an array of Newgistics::Products</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="ProductResponse.html" title="Newgistics::ProductResponse (class)">Newgistics::ProductResponse</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a lightweight wrapper around the xml response</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/newgistics/client.rb', line 45</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_products'>create_products</span><span class='lparen'>(</span><span class='id identifier rubyid_products'>products</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_last_request'>last_request</span> <span class='op'>=</span> <span class='const'>ProductRequest</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_products'>products</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_request'>send_request</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/post_products.aspx</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='const'>ProductResponse</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_return-instance_method">
+  
+    - (<tt><span class='object_link'><a href="ReturnResponse.html" title="Newgistics::ReturnResponse (class)">Newgistics::ReturnResponse</a></span></tt>) <strong>create_return</strong>(rma) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates a new return in newgistics</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>rma</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Return.html" title="Newgistics::Return (class)">Newgistics::Return</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a Newgistics::Return object</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="ReturnResponse.html" title="Newgistics::ReturnResponse (class)">Newgistics::ReturnResponse</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a lightweight wrapper around the xml response</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/newgistics/client.rb', line 63</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_return'>create_return</span><span class='lparen'>(</span><span class='id identifier rubyid_rma'>rma</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_last_request'>last_request</span> <span class='op'>=</span> <span class='const'>ReturnRequest</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_rma'>rma</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_request'>send_request</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/post_inbound_returns.aspx</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='const'>ReturnResponse</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_shipment-instance_method">
+  
+    - (<tt><span class='object_link'><a href="ShipmentResponse.html" title="Newgistics::ShipmentResponse (class)">Newgistics::ShipmentResponse</a></span></tt>) <strong>create_shipment</strong>(shipment) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates a new shipment in newgistics</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>shipment</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Shipment.html" title="Newgistics::Shipment (class)">Newgistics::Shipment</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a Newgistics::Shipment object</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="ShipmentResponse.html" title="Newgistics::ShipmentResponse (class)">Newgistics::ShipmentResponse</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a lightweight wrapper around the xml response</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/newgistics/client.rb', line 54</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_shipment'>create_shipment</span><span class='lparen'>(</span><span class='id identifier rubyid_shipment'>shipment</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_last_request'>last_request</span> <span class='op'>=</span> <span class='const'>ShipmentRequest</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_shipment'>shipment</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_request'>send_request</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/post_shipments.aspx</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='const'>ShipmentResponse</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="list_inventory-instance_method">
+  
+    - (<tt><span class='object_link'><a href="InventoryResponse.html" title="Newgistics::InventoryResponse (class)">Newgistics::InventoryResponse</a></span></tt>) <strong>list_inventory</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Lists the inventory currently in newgistics</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="InventoryResponse.html" title="Newgistics::InventoryResponse (class)">Newgistics::InventoryResponse</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An InventoryResponse object</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/newgistics/client.rb', line 31</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_list_inventory'>list_inventory</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_last_response'>last_response</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_req'>req</span><span class='op'>|</span>
+    <span class='id identifier rubyid_req'>req</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/inventory.aspx</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_req'>req</span><span class='period'>.</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+      <span class='label'>key:</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NEWGISTICS_KEY</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+  <span class='const'>InventoryResponse</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_last_response'>last_response</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="shipment_status-instance_method">
+  
+    - (<tt><span class='object_link'><a href="ShipmentStatusResponse.html" title="Newgistics::ShipmentStatusResponse (class)">Newgistics::ShipmentStatusResponse</a></span></tt>) <strong>shipment_status</strong>(shipment_id) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Check the status of a shipment in newgistics</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>shipment_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the id of the shipment to track</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="ShipmentStatusResponse.html" title="Newgistics::ShipmentStatusResponse (class)">Newgistics::ShipmentStatusResponse</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a lightweight wrapper around the xml response with some helper methods</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74
+75
+76
+77
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/newgistics/client.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_shipment_status'>shipment_status</span><span class='lparen'>(</span><span class='id identifier rubyid_shipment_id'>shipment_id</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_last_response'>last_response</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/shipments.aspx</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_req'>req</span><span class='op'>|</span>
+    <span class='id identifier rubyid_req'>req</span><span class='period'>.</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+      <span class='label'>key:</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NEWGISTICS_KEY</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='label'>shipmentId:</span> <span class='id identifier rubyid_shipment_id'>shipment_id</span>
+    <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+  <span class='const'>ShipmentStatusResponse</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_last_response'>last_response</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sun Mar 22 10:03:36 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>

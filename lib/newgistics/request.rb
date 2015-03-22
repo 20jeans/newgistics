@@ -1,9 +1,9 @@
-require "tilt"
+require 'tilt'
 
+# The base request class
 module Newgistics
   class Request
-    attr_accessor :client
-
+    # @return [String] renders the slim template and returns the xml document
     def render(options = {})
       options.reverse_merge!(DEFAULTS)
       template = Tilt.new("#{root}/#{self.class.name.gsub('Newgistics','').underscore}.slim")

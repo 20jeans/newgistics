@@ -7,15 +7,15 @@ Gem::Specification.new do |spec|
   spec.name          = "newgistics"
   spec.version       = Newgistics::VERSION
   spec.authors       = ["brianthecoder"]
-  spec.email         = ["brian@20jeans.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.email         = ["brian@dstld.la"]
+  spec.summary       = %q{A client for integrating with the newgistics api}
+  spec.description   = %q{A client for the newgistics api. Most functionality is supported around creating and tracking packages. Inventory and product management are supported as well}
+  spec.homepage      = "https://github.com/20jeans/newgistics"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.test_files    = spec.files.grep(%r{^(spec)/})
   spec.require_paths = ["lib"]
 
   spec.add_dependency "activemodel"
@@ -33,4 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "vcr"
+  spec.add_development_dependency "yard"
 end

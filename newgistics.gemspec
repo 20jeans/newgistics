@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Newgistics::VERSION
   spec.authors       = ["brianthecoder"]
   spec.email         = ["brian@dstld.la"]
-  spec.summary       = %q{A client for integrating with the newgistics api}
+  spec.summary       = %q{A client for integrating with the newgistics API}
   spec.description   = %q{A client for the newgistics api. Most functionality is supported around creating and tracking packages. Inventory and product management are supported as well}
   spec.homepage      = "https://github.com/20jeans/newgistics"
   spec.license       = "MIT"

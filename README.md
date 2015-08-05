@@ -1,6 +1,6 @@
 # Newgistics
 
-TODO: Write a gem description
+A client for the newgistics api. Most functionality is supported around creating and tracking packages. Inventory and product management are supported as well
 
 ## Installation
 
@@ -20,7 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'newgistics'
+```
 
 ## Contributing
 

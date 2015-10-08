@@ -79,6 +79,23 @@ module Newgistics
       ShipmentStatusResponse.new(last_response)
     end
 
+    # Check the status of a shipment in newgistics
+    #
+    # @param shipment_id [String] the id of the shipment to track
+    # @return [Newgistics::ShipmentStatusResponse] a lightweight wrapper around the xml response with some helper methods
+    def order_shipments(number)
+      self.last_response = client.get '/shipments.aspx' do |req|
+        req.params = {
+          key: ENV['NEWGISTICS_KEY'],
+          id: number
+        }
+      end
+      ng_response = Newgistics::Response.new(last_response)
+      ng_response.doc.css('Shipments Shipment').map{|response|
+        ShipmentStatusResponse.new(response)
+      }
+    end
+
     protected
 
     def send_request(url, response_class)

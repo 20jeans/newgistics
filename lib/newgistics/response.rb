@@ -10,7 +10,7 @@ module Newgistics
 
     # @return [Nokogiri::Document] returns a nokogiri document object
     def doc
-      @_doc ||= ::Nokogiri::XML(response.body.gsub("\r\n",''))
+      @_doc ||= @response.class == Faraday::Response ? ::Nokogiri::XML(response.body.gsub("\r\n",'')) : @response
     end
   end
 end

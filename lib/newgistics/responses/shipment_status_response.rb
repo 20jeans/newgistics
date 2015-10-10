@@ -13,7 +13,7 @@ module Newgistics
 
     # @return [String] the tracking id for the shipment
     def shipping_id
-      doc.css('Shipment').first[:id]
+      doc.css('OrderID').first.parent.attr('id')
     end
 
     # @return [String] the method used to ship the order

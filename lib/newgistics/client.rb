@@ -79,10 +79,10 @@ module Newgistics
       ShipmentStatusResponse.new(last_response)
     end
 
-    # Check the status of a shipment in newgistics
+    # Retrieve the shipments associated with an order
     #
-    # @param shipment_id [String] the id of the shipment to track
-    # @return [Newgistics::ShipmentStatusResponse] a lightweight wrapper around the xml response with some helper methods
+    # @param number [String] the order number
+    # @return Array of [Newgistics::ShipmentStatusResponse] a lightweight wrapper around the xml response with some helper methods
     def order_shipments(number)
       self.last_response = client.get '/shipments.aspx' do |req|
         req.params = {

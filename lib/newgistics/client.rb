@@ -65,6 +65,21 @@ module Newgistics
       send_request('/post_inbound_returns.aspx', ReturnResponse)
     end
 
+    # Check the status of a return in newgistics
+    #
+    # @param rma [Newgistics::Return] a Newgistics::Return object
+    # @return [Array][Newgistics::ReturnResponse] a lightweight wrapper around the xml response
+    def returns(startTimeStamp, endTimeStamp)
+      self.last_response = client.get '/returns.aspx' do |req|
+        req.params = {
+          key: ENV['NEWGISTICS_KEY'],
+          startTimeStamp: startTimeStamp.strftime("%Y-%m-%d"),
+          endTimeStamp: endTimeStamp.strftime("%Y-%m-%d")
+        }
+      end
+      Response.new(last_response).doc.css('Return').map{|ret| Newgistics::ReturnResponse.new(ret)}
+    end
+
     # Check the status of a shipment in newgistics
     #
     # @param shipment_id [String] the id of the shipment to track

@@ -4,7 +4,7 @@ Returns(apiKey=ENV['NEWGISTICS_KEY'])
     RMA= rma.number
     Comments= rma.reason
     Items
-      - rmas.line_items do |item|
+      - rma.line_items do |item|
         Item
           SKU= item.sku
           Qty= item.quantity

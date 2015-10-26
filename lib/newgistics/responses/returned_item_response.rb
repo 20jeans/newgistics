@@ -7,7 +7,7 @@ module Newgistics
 
     # @return [String] the return reason
     def reason
-      doc.css('SKU').first.text
+      doc.css('ReturnReason').first.text
     end
 
     # @return [Int] the number returned

@@ -25,6 +25,10 @@ module Newgistics
       doc.css('Status').text
     end
 
+    def timestamp
+      Time.xmlschema(doc.css('Timestamp').text)
+    end
+
     # @return [Array][ReturnedItem] Returned Items
     def items
       doc.css('Item').map{|item|

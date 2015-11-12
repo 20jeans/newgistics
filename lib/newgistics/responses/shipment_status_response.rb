@@ -11,7 +11,12 @@ module Newgistics
       doc.css('Tracking').try(:text)
     end
 
-    # @return [String] the tracking id for the shipment
+    # @return [String] the shipping id for the shipment
+    def order_id
+      doc.css('OrderID').try(:text)
+    end
+
+    # @return [String] the shipping id for the shipment
     def shipping_id
       doc.css('OrderID').first.parent.attr('id')
     end

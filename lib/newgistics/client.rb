@@ -97,6 +97,22 @@ module Newgistics
       Response.new(last_response).doc.css('Shipment').map{|ret| Newgistics::ShipmentStatusResponse.new(ret)}
     end
 
+    # Check the status of a returns in newgistics
+    #
+    # @param startTimeStamp [Time] a Time object
+    # @param endTimeStamp [Time] a Time object
+    # @return [Array][Newgistics::ReturnResponse] a lightweight wrapper around the xml response
+    def shipments_by_received(startTimeStamp, endTimeStamp)
+      self.last_response = client.get '/shipments.aspx' do |req|
+        req.params = {
+          key: ENV['NEWGISTICS_KEY'],
+          startReceivedTimestamp: startTimeStamp.strftime("%Y-%m-%d"),
+          endReceivedTimestamp: endTimeStamp.strftime("%Y-%m-%d"),
+        }
+      end
+      Response.new(last_response).doc.css('Shipment').map{|ret| Newgistics::ShipmentStatusResponse.new(ret)}
+    end
+
     # Check the status of a shipment in newgistics
     #
     # @param shipment_id [String] the id of the shipment to track

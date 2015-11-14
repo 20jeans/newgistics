@@ -48,5 +48,13 @@ module Newgistics
     def shipment_status
       doc.css('ShipmentStatus').text
     end
+
+    # @return [Array][ShippedItem] Shipped Items
+    def items
+      doc.css('Package').css('Item').map{|item|
+        Newgistics::ShippedItemResponse.new(item)
+      }
+    end
+
   end
 end

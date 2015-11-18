@@ -65,7 +65,23 @@ module Newgistics
       send_request('/post_inbound_returns.aspx', ReturnResponse)
     end
 
-    # Check the status of a returns in newgistics
+    # Get a list of inbound returns in newgistics
+    #
+    # @param startTimeStamp [Time] a Time object
+    # @param endTimeStamp [Time] a Time object
+    # @return [Array][Newgistics::ReturnResponse] a lightweight wrapper around the xml response
+    def inbound_returns(startTimeStamp, endTimeStamp)
+      self.last_response = client.get '/inbound_returns.aspx' do |req|
+        req.params = {
+          key: ENV['NEWGISTICS_KEY'],
+          startCreatedTimestamp: startTimeStamp.strftime("%Y-%m-%d"),
+          endCreatedTimestamp: endTimeStamp.strftime("%Y-%m-%d")
+        }
+      end
+      Response.new(last_response).doc.css('InboundReturn').map{|ret| Newgistics::InboundReturnResponse.new(ret)}
+    end
+
+# Get a list of received returns in newgistics
     #
     # @param startTimeStamp [Time] a Time object
     # @param endTimeStamp [Time] a Time object
@@ -81,7 +97,7 @@ module Newgistics
       Response.new(last_response).doc.css('Return').map{|ret| Newgistics::ReturnResponse.new(ret)}
     end
 
-    # Check the status of a returns in newgistics
+    # Get a list of shipments in newgistics
     #
     # @param startTimeStamp [Time] a Time object
     # @param endTimeStamp [Time] a Time object
@@ -97,7 +113,7 @@ module Newgistics
       Response.new(last_response).doc.css('Shipment').map{|ret| Newgistics::ShipmentStatusResponse.new(ret)}
     end
 
-    # Check the status of a returns in newgistics
+    # Check the status of a shipment in newgistics
     #
     # @param startTimeStamp [Time] a Time object
     # @param endTimeStamp [Time] a Time object

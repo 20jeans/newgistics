@@ -27,6 +27,7 @@ module Newgistics
   ## Response
   autoload :ProductResponse, "newgistics/responses/product_response"
   autoload :ReturnResponse, "newgistics/responses/return_response"
+  autoload :InboundReturnResponse, "newgistics/responses/inbound_return_response"
   autoload :ReturnedItemResponse, "newgistics/responses/returned_item_response"
   autoload :ShipmentResponse, "newgistics/responses/shipment_response"
   autoload :ShippedItemResponse, "newgistics/responses/shipped_item_response"

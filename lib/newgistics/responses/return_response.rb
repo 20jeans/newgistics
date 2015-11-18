@@ -7,7 +7,8 @@ module Newgistics
 
     # @return [String] the order ID for the return
     def order_id
-      doc.attr('orderID').split(' ').first
+      mo = doc.attr('orderID').match(/(R\d{9})\W*([\w^_]*)/)
+      mo.nil? ? nil : mo[1]
     end
 
     # @return [String] the order ID for the return

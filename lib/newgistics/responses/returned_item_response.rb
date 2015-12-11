@@ -1,5 +1,10 @@
 module Newgistics
   class ReturnedItemResponse < Newgistics::Response
+    # @return [String] the ID for the item
+    def item_id
+      doc.attr('id')
+    end
+
     # @return [String] the item SKU
     def sku
       doc.css('SKU').first.text

@@ -26,6 +26,11 @@ module Newgistics
       doc.css('Status').text
     end
 
+    # @return [String] the email of the return
+    def email
+      doc.css('Email').text.downcase
+    end
+
     def timestamp
       Time.xmlschema(doc.css('Timestamp').text)
     end

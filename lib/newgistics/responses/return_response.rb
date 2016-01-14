@@ -31,6 +31,21 @@ module Newgistics
       doc.css('Email').text.downcase
     end
 
+    # @return [String] the email of the return
+    def zipcode
+      doc.css('PostalCode').text
+    end
+
+    # @return [String] the first name of the return
+    def firstname
+      doc.css('FirstName').text.downcase
+    end
+
+    # @return [String] the last name of the return
+    def lastname
+      doc.css('LastName').text
+    end
+
     def timestamp
       Time.xmlschema(doc.css('Timestamp').text)
     end

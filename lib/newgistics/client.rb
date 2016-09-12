@@ -1,5 +1,6 @@
 require 'active_model'
 require 'faraday_middleware'
+require 'pry'
 
 module Newgistics
   class Client
@@ -7,6 +8,7 @@ module Newgistics
     TEST_URL = 'https://apistaging.newgisticsfulfillment.com'.freeze
     # The base url for the production environment
     LIVE_URL = 'https://api.newgisticsfulfillment.com'.freeze
+    REST_URL = 'https://api.newgistics.com'.freeze
 
     # A boolean to determine whether the client is in test mode
     attr_accessor :test
@@ -81,7 +83,7 @@ module Newgistics
       Response.new(last_response).doc.css('InboundReturn').map{|ret| Newgistics::InboundReturnResponse.new(ret)}
     end
 
-# Get a list of received returns in newgistics
+    # Get a list of received returns in newgistics
     #
     # @param startTimeStamp [Time] a Time object
     # @param endTimeStamp [Time] a Time object
@@ -95,6 +97,16 @@ module Newgistics
         }
       end
       Response.new(last_response).doc.css('Return').map{|ret| Newgistics::ReturnResponse.new(ret)}
+    end
+
+    # Get a list of received returns in newgistics
+    #
+    # @param startTimeStamp [Time] a Time object
+    # @param endTimeStamp [Time] a Time object
+    # @return [Array][Newgistics::ReturnResponse] a lightweight wrapper around the xml response
+    def track_return(rma_number)
+      self.last_request = TrackingRequest.new(rma_number)
+      send_request('/WebAPI/Shipment/Tracking', TrackingResponse, restclient)
     end
 
     # Get a list of shipments in newgistics
@@ -160,11 +172,15 @@ module Newgistics
       }
     end
 
-    protected
+  protected
 
-    def send_request(url, response_class)
+    def send_request(url, response_class, cl = nil)
+      binding.pry
+      myclient = cl || client
+      puts(last_request.render)
+      myclient.headers.merge!(last_request.headers)
       return false unless last_request.valid?
-      self.last_response = client.post do |req|
+      self.last_response = myclient.post do |req|
         req.url url
         req.body = last_request.render
       end
@@ -173,6 +189,13 @@ module Newgistics
 
     def client
       @_client ||= Faraday.new (@test ? TEST_URL : LIVE_URL) do |conn|
+        conn.use :instrumentation
+        conn.adapter Faraday.default_adapter
+      end
+    end
+
+    def restclient
+      @_client ||= Faraday.new (@test ? TEST_URL : REST_URL) do |conn|
         conn.use :instrumentation
         conn.adapter Faraday.default_adapter
       end

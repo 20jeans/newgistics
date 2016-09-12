@@ -51,7 +51,14 @@ module Newgistics
 
     # @return [Array][ShippedItem] Shipped Items
     def items
-      doc.css('Package').css('Item').map{|item|
+      doc.css('Package').css('Item').map {|item|
+        Newgistics::ShippedItemResponse.new(item)
+      }
+    end
+
+    # @return [Array][ShippedItem] Shipped Items
+    def other_items
+      doc.css('Item').map {|item|
         Newgistics::ShippedItemResponse.new(item)
       }
     end

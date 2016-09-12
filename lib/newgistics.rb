@@ -23,6 +23,8 @@ module Newgistics
   autoload :ProductRequest, "newgistics/requests/product_request"
   autoload :ReturnRequest, "newgistics/requests/return_request"
   autoload :ShipmentRequest, "newgistics/requests/shipment_request"
+  autoload :RestRequest, "newgistics/requests/rest_request"
+  autoload :TrackingRequest, "newgistics/requests/tracking_request"
 
   ## Response
   autoload :ProductResponse, "newgistics/responses/product_response"
@@ -33,4 +35,5 @@ module Newgistics
   autoload :ShippedItemResponse, "newgistics/responses/shipped_item_response"
   autoload :InventoryResponse, "newgistics/responses/inventory_response"
   autoload :ShipmentStatusResponse, "newgistics/responses/shipment_status_response"
+  autoload :TrackingResponse, "newgistics/responses/tracking_response"
 end

@@ -58,7 +58,7 @@ module Newgistics
     end
 
     def timestamp
-      Time.xmlschema(doc.css('Timestamp').text)
+      Time.xmlschema(doc.css('Time').text)
     end
 
     # @return [Array][ReturnedItem] Returned Items

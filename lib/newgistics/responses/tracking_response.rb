@@ -6,9 +6,20 @@ module Newgistics
     end
 
     # @return [String] the order ID for the return
-    def order_id
-      mo = doc.attr('orderID').match(/(R\d{9})\W*([\w^_]*)/)
-      mo.nil? ? nil : mo[1]
+    def reference_number
+      # mo = doc.attr('orderID').match(/(R\d{9})\W*([\w^_]*)/)
+      # mo.nil? ? nil : mo[1]
+      doc.css("ReferenceNumber").text
+    end
+
+    def tracking_number
+      doc.search("TrackingNumber").text
+    end
+
+    def label_created?
+      # doc.search("PackageTrackingEvent CSREventMessage").text == "Label created"
+      # doc.css("PackageTrackingEvent EventCode").text == "LC"
+      doc.css("PackageTrackingEvent EventCode").map(&:text).any? { |y| y == "LC" }
     end
 
     # @return [String] the order ID for the return

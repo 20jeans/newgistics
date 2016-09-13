@@ -7,7 +7,6 @@ module Newgistics
     # @return [String] renders the slim template and returns the xml document
     def render(options = {})
       options.reverse_merge!(DEFAULTS)
-      binding.pry
       template = Tilt.new("#{root}/#{self.class.name.gsub('Newgistics','').underscore}.slim")
       template.render(self, options: options)
     end

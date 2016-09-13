@@ -9,6 +9,8 @@ module Newgistics
     # The base url for the production environment
     LIVE_URL = 'https://api.newgisticsfulfillment.com'.freeze
     REST_URL = 'https://api.newgistics.com'.freeze
+    TEST_REST_URL = 'https://api.newgistics.com'.freeze
+    NEW_URL = 'https://api.newgistics.com'.freeze
 
     # A boolean to determine whether the client is in test mode
     attr_accessor :test
@@ -20,10 +22,8 @@ module Newgistics
     def initialize(config = {})
       @test = if config.key?(:test)
         config[:test]
-      elsif ENV['TEST_MODE'] == 'true'
-        true
       else
-        false
+        ENV['TEST_MODE'] == 'true'
       end
     end
 
@@ -104,7 +104,20 @@ module Newgistics
     # @param startTimeStamp [Time] a Time object
     # @param endTimeStamp [Time] a Time object
     # @return [Array][Newgistics::ReturnResponse] a lightweight wrapper around the xml response
-    def track_return(rma_number)
+    #
+    # to track RMA number, qualifier must be ItemID
+    # TO TRACK SHIPMENT, RMA_NUMBER=TRACKING NUMBER, QUALIFIER='ReferenceNumber' with NO space
+    def track_return(rma_number, qualifier="ReferenceNumber")
+      self.last_request = TrackingRequest.new(rma_number, qualifier)
+      send_request('/WebAPI/Shipment/Tracking', TrackingResponse, restclient)
+    end
+
+    def track_all_returns
+      self.last_request = TrackingRequest.new("", "ItemID")
+      send_request('/WebAPI/Shipment/Tracking', TrackingResponse, restclient)
+    end
+
+    def track_shipment(order_id)
       self.last_request = TrackingRequest.new(rma_number)
       send_request('/WebAPI/Shipment/Tracking', TrackingResponse, restclient)
     end
@@ -172,15 +185,15 @@ module Newgistics
       }
     end
 
-  protected
+  private
 
-    def send_request(url, response_class, cl = nil)
-      binding.pry
-      myclient = cl || client
-      puts(last_request.render)
-      myclient.headers.merge!(last_request.headers)
-      return false unless last_request.valid?
-      self.last_response = myclient.post do |req|
+    def send_request(url, response_class, cl = restclient)
+      cl.headers.merge!(last_request.headers)
+      # return false unless last_request.valid?
+      self.last_response = cl.post do |req|
+        req.params = {
+          key: ENV['NEWGISTICS_NEW_KEY']
+        }
         req.url url
         req.body = last_request.render
       end
@@ -195,7 +208,7 @@ module Newgistics
     end
 
     def restclient
-      @_client ||= Faraday.new (@test ? TEST_URL : REST_URL) do |conn|
+      @_client ||= Faraday.new (@test ? TEST_REST_URL : REST_URL) do |conn|
         conn.use :instrumentation
         conn.adapter Faraday.default_adapter
       end

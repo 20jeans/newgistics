@@ -2,17 +2,19 @@ module Newgistics
   class TrackingRequest < RestRequest
     # @return [Newgistics::Return] a model representing the return
     attr_accessor :number
+    attr_accessor :qualifier
 
     DEFAULTS = {}
 
-    def initialize(number)
+    def initialize(number, qualifier="ReferenceNumber")
       @number = number
+      @qualifier = qualifier
     end
 
     def render(options = {})
       {
         merchantID: ENV['NEWGISTICS_MID'],
-        qualifier: "Reference Number",
+        qualifier: @qualifier,
         searchStrings: [@number]
       }.to_json
     end

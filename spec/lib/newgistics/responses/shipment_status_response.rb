@@ -4,7 +4,6 @@ describe Newgistics::ShipmentStatusResponse do
   it 'returns the shipment status' do
     client = Newgistics::Client.new(test: false)
     resp = client.shipment_status(ENV['NEWGISTICS_TEST_ORDER_ID'])
-    binding.pry
     puts resp.tracking_url
     puts resp.tracking_id
     puts resp.shipping_method

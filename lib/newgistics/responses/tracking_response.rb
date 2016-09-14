@@ -16,10 +16,10 @@ module Newgistics
       doc.search("TrackingNumber").text
     end
 
-    def label_created?
-      # doc.search("PackageTrackingEvent CSREventMessage").text == "Label created"
-      # doc.css("PackageTrackingEvent EventCode").text == "LC"
-      doc.css("PackageTrackingEvent EventCode").map(&:text).any? { |y| y == "LC" }
+    def picked_up_timestamp
+      doc.css("PackageTrackingEvent").select {|e|
+        e.search("EventCode").text == "PUU"
+      }.first.search("Time").text
     end
 
     # @return [String] the order ID for the return

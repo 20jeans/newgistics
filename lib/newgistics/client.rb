@@ -106,19 +106,10 @@ module Newgistics
     # @return [Array][Newgistics::ReturnResponse] a lightweight wrapper around the xml response
     #
     # to track RMA number, qualifier must be ItemID
-    # TO TRACK SHIPMENT, RMA_NUMBER=TRACKING NUMBER, QUALIFIER='ReferenceNumber' with NO space
-    def track_return(rma_number, qualifier="ReferenceNumber")
+    # to track shipment, RMA_NUMBER=TRACKING NUMBER, QUALIFIER='ReferenceNumber' with NO space
+    # to track order, RMA_NUMBER=ORDER NUMBER, QUAL=OrderNumber, doesnt always work
+    def track_return(rma_number, qualifier="ItemID")
       self.last_request = TrackingRequest.new(rma_number, qualifier)
-      send_request('/WebAPI/Shipment/Tracking', TrackingResponse, restclient)
-    end
-
-    def track_all_returns
-      self.last_request = TrackingRequest.new("", "ItemID")
-      send_request('/WebAPI/Shipment/Tracking', TrackingResponse, restclient)
-    end
-
-    def track_shipment(order_id)
-      self.last_request = TrackingRequest.new(rma_number)
       send_request('/WebAPI/Shipment/Tracking', TrackingResponse, restclient)
     end
 

@@ -113,6 +113,14 @@ module Newgistics
       send_request('/WebAPI/Shipment/Tracking', TrackingResponse, restclient)
     end
 
+    def track_shipment(tracking_number, qualifier="ReferenceNumber")
+      track_return(tracking_number, qualifier)
+    end
+
+    def track_order(order_number, qualifier="OrderNumber")
+      track_return(order_number, qualifier)
+    end
+
     # Get a list of shipments in newgistics
     #
     # @param startTimeStamp [Time] a Time object

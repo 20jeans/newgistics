@@ -7,7 +7,7 @@ module Newgistics
       {
         'User-Agent' => 'Fiddler',
         "Content-type" => "application/json; charset=utf-8",
-        "x-API-Key" => ENV['NEWGISTICS_NEW_KEY']
+        "x-API-Key" => ENV['NEWGISTICS_REST_KEY']
       }
     end
 

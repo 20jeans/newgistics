@@ -19,7 +19,7 @@ module Newgistics
     def picked_up_timestamp
       doc.css("PackageTrackingEvent").select {|e|
         e.search("EventCode").text == "PUU"
-      }.first.search("Time").text
+      }.select{|ts| ts.search("Time").text}.first
     end
 
     # @return [String] the order ID for the return

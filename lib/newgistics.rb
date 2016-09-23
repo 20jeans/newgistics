@@ -36,4 +36,5 @@ module Newgistics
   autoload :InventoryResponse, "newgistics/responses/inventory_response"
   autoload :ShipmentStatusResponse, "newgistics/responses/shipment_status_response"
   autoload :TrackingResponse, "newgistics/responses/tracking_response"
+  autoload :TrackingEvent, "newgistics/responses/tracking_event"
 end

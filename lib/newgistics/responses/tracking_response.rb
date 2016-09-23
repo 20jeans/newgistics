@@ -61,6 +61,10 @@ module Newgistics
       Time.xmlschema(doc.css('Time').text)
     end
 
+    def events
+      doc.css('PackageTrackingEvent').map{|edoc| TrackingEvent.new(edoc)}
+    end
+
     # @return [Array][ReturnedItem] Returned Items
     def items
       doc.css('Item').map{|item|

@@ -57,5 +57,14 @@ module Newgistics
       }
     end
 
+    # @return [String] the tracking number
+    def tracking
+      doc.css('CarrierTracking').text
+    end
+
+    def rma
+      doc.css('RMA').text
+    end
+
   end
 end

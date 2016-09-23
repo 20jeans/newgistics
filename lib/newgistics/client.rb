@@ -10,7 +10,6 @@ module Newgistics
     LIVE_URL = 'https://api.newgisticsfulfillment.com'.freeze
     REST_URL = 'https://api.newgistics.com'.freeze
     TEST_REST_URL = 'https://api.newgistics.com'.freeze
-    NEW_URL = 'https://api.newgistics.com'.freeze
 
     # A boolean to determine whether the client is in test mode
     attr_accessor :test
@@ -25,6 +24,7 @@ module Newgistics
       else
         ENV['TEST_MODE'] == 'true'
       end
+      @clients = {}
     end
 
     # Lists the inventory currently in newgistics
@@ -110,7 +110,7 @@ module Newgistics
     # to track order, RMA_NUMBER=ORDER NUMBER, QUAL=OrderNumber, doesnt always work
     def track_return(rma_number, qualifier="ItemID")
       self.last_request = TrackingRequest.new(rma_number, qualifier)
-      send_request('/WebAPI/Shipment/Tracking', TrackingResponse, restclient)
+      send_rest_request('/WebAPI/Shipment/Tracking', TrackingResponse, restclient)
     end
 
     def track_shipment(tracking_number, qualifier="ReferenceNumber")
@@ -186,28 +186,43 @@ module Newgistics
 
   private
 
-    def send_request(url, response_class, cl = restclient)
+    def send_request(path, response_class, cl = client)
       cl.headers.merge!(last_request.headers)
       # return false unless last_request.valid?
       self.last_response = cl.post do |req|
         req.params = {
-          key: ENV['NEWGISTICS_NEW_KEY']
+          key: ENV['NEWGISTICS_KEY']
         }
-        req.url url
+        req.url(path)
+        req.body = last_request.render
+      end
+      response_class.new(last_response)
+    end
+
+    def send_rest_request(path, response_class, cl = restclient)
+      cl.headers.merge!(last_request.headers)
+      # return false unless last_request.valid?
+      self.last_response = cl.post do |req|
+        req.params = {
+          key: ENV['NEWGISTICS_REST_KEY']
+        }
+        req.url(path)
         req.body = last_request.render
       end
       response_class.new(last_response)
     end
 
     def client
-      @_client ||= Faraday.new (@test ? TEST_URL : LIVE_URL) do |conn|
+      real_url = @test ? TEST_URL : LIVE_URL
+      @clients[real_url] ||= Faraday.new (real_url) do |conn|
         conn.use :instrumentation
         conn.adapter Faraday.default_adapter
       end
     end
 
     def restclient
-      @_client ||= Faraday.new (@test ? TEST_REST_URL : REST_URL) do |conn|
+      real_url = @test ? TEST_REST_URL : REST_URL
+      @clients[real_url] ||= Faraday.new (real_url) do |conn|
         conn.use :instrumentation
         conn.adapter Faraday.default_adapter
       end

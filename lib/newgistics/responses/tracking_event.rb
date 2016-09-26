@@ -20,6 +20,10 @@ module Newgistics
       doc.css('TrackingKey').text
     end
 
+    def eventCode
+      doc.css('EventCode').text
+    end
+
     def doc
       @doc
     end

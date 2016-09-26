@@ -22,5 +22,13 @@ module Newgistics
       }
     end
 
+    def rma
+      doc.css('RMA').text
+    end
+
+    def tracking
+      doc.css('CarrierTracking').text
+    end
+
   end
 end

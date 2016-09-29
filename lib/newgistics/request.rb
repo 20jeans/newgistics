@@ -1,5 +1,4 @@
 require 'tilt'
-require 'pry'
 
 # The base request class
 module Newgistics

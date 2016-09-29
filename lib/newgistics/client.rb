@@ -1,6 +1,5 @@
 require 'active_model'
 require 'faraday_middleware'
-require 'pry'
 
 module Newgistics
   class Client

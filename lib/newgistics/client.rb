@@ -29,14 +29,19 @@ module Newgistics
     # Lists the inventory currently in newgistics
     #
     # @return [Newgistics::InventoryResponse] An InventoryResponse object
-    def list_inventory
+    def list_inventory(sku = nil)
       self.last_response = client.get do |req|
         req.url '/inventory.aspx'
         req.params = {
           key: ENV['NEWGISTICS_KEY']
         }
+        req.params[:sku] = sku unless sku.nil?
       end
       InventoryResponse.new(last_response)
+    end
+
+    def product_inventory(sku)
+      list_inventory(sku).products.first
     end
 
     # Creates a new product(s) in newgistics

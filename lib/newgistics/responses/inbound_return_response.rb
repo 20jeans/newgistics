@@ -2,7 +2,7 @@ module Newgistics
   class InboundReturnResponse < Newgistics::Response
     # @return [String] the shipping ID for the return
     def shipping_id
-      doc.attr('shipmentID')
+      doc.css('ShipmentID').text
     end
 
     # @return [String] the order ID for the return

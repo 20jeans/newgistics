@@ -3,6 +3,8 @@ require 'tilt'
 # The base request class
 module Newgistics
   class Request
+    DEFAULTS = {}
+
     # @return [String] renders the slim template and returns the xml document
     def render(options = {})
       options.reverse_merge!(DEFAULTS)

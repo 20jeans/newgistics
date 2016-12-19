@@ -1,6 +1,6 @@
 doctype xml
 Orders(apiKey=ENV['NEWGISTICS_KEY'])
-  Order(orderID=shipment.number)
+  Order(orderID="#{shipment.order.number} - #{shipment.id}")
     CustomerInfo
       - shipment.ship_address do |address|
         FirstName= address.first_name

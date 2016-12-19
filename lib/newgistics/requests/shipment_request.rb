@@ -3,6 +3,15 @@ module Newgistics
     # @return [Newgistics::Shipment] a model representing the shipment
     attr_accessor :shipment
 
+    DEFAULTS = {}
+
+    def headers
+      {
+        'User-Agent' => 'Fiddler',
+        "Content-type" => "application/json; charset=utf-8",
+      }
+    end
+
     def initialize(shipment)
       self.shipment = shipment
     end

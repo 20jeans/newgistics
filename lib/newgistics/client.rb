@@ -62,6 +62,15 @@ module Newgistics
       send_request('/post_shipments.aspx', ShipmentResponse)
     end
 
+    # Creates a new shipment in newgistics
+    #
+    # @param shipment [Newgistics::Shipment] a Newgistics::Shipment object
+    # @return [Newgistics::ShipmentResponse] a lightweight wrapper around the xml response
+    def create_order_shipment(order, shipment)
+      self.last_request = OrderShipmentRequest.new(order, shipment)
+      send_request('/post_shipments.aspx', ShipmentResponse)
+    end
+
     # Creates a new return in newgistics
     #
     # @param rma [Newgistics::Return] a Newgistics::Return object

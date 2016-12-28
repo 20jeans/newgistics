@@ -1,11 +1,14 @@
 # A model to represent an address in newgistics
+require 'active_model'
 module Newgistics
   class Address
-    include Virtus.model(mass_assignment: false)
+    include Virtus.model
     include ActiveModel::Validations
 
-    # @return [String] the name of the person at the address
-    attribute :name, String
+    # @return [String] the first name of the person at the address
+    attribute :firstname, String
+    # @return [String] the last name of the person at the address
+    attribute :lastname, String
     # @return [String] the street address (required)
     attribute :address1, String
     # @return [String] the suite/apartment number
@@ -36,5 +39,20 @@ module Newgistics
 
     validates :address1, presence: true
     validates :postal_code, presence: true
+
+    def self.from_spree(addr)
+      self.new(
+          { firstname:  addr.firstname,
+            lastname:   addr.lastname,
+            address1:   addr.address1,
+            address2:   addr.address2,
+            city:       addr.city,
+            state:      addr.state_name,
+            country:    addr.country.name,
+            postal_code:addr.zipcode,
+            phone:      addr.phone,
+            type:       addr.address_type || 'residential'
+          })
+    end
   end
 end

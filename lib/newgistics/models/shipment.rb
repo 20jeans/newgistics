@@ -1,7 +1,8 @@
+require 'active_model'
 # A model representing a shipment in newgistics
 module Newgistics
   class Shipment
-    include Virtus.model(mass_assignment: false)
+    include Virtus.model
     include ActiveModel::Validations
 
     # @return [String] the id of the shipment (required)

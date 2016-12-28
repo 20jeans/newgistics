@@ -1,8 +1,8 @@
 doctype xml
 Orders(apiKey=ENV['NEWGISTICS_KEY'])
-  Order(orderID="#{order.number} - #{shipment.id}")
+  Order(orderID="#{order.number} - #{real_shipment.id}")
     CustomerInfo
-      - order.ship_address do |address|
+      - shipment.ship_address do |address|
         FirstName= address.first_name
         LastName= address.last_name
         Address1= address.address1
@@ -11,16 +11,16 @@ Orders(apiKey=ENV['NEWGISTICS_KEY'])
         State= address.state
         Zip= address.postal_code
         Country= address.country
-        Email= order.email
+        Email= shipment.email
         Phone= address.phone
         IsResidential= (address.type == 'residential')
     AllowDuplicate
-    OrderDate= order.completed_at.strftime('%m/%d/%Y')
-    ShipMethod= order.ship_method
-    InfoLine= order.options[:info]
-    RequiresSignature= order.options[:signature]
+    OrderDate= shipment.completed_at.strftime('%m/%d/%Y')
+    ShipMethod= real_shipment.ship_method
+    InfoLine= shipment.options[:info]
+    RequiresSignature= shipment.options[:signature]
     Items
-      - order.line_items.each do |item|
+      - shipment.line_items.each do |item|
         Item
           SKU= item.sku
           Qty= item.quantity

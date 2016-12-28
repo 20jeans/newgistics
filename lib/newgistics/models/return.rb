@@ -1,3 +1,4 @@
+require 'active_model'
 # A model representing a return for newgistics
 module Newgistics
   class Return

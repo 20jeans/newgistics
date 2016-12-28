@@ -55,19 +55,11 @@ module Newgistics
 
     # Creates a new shipment in newgistics
     #
-    # @param shipment [Newgistics::Shipment] a Newgistics::Shipment object
+    # @param order [Spree::Order] a Spree::Order object
+    # @param shipment [Spree::Shipment] a Spree::Shipment object
     # @return [Newgistics::ShipmentResponse] a lightweight wrapper around the xml response
-    def create_shipment(shipment)
-      self.last_request = ShipmentRequest.new(shipment)
-      send_request('/post_shipments.aspx', ShipmentResponse)
-    end
-
-    # Creates a new shipment in newgistics
-    #
-    # @param shipment [Newgistics::Shipment] a Newgistics::Shipment object
-    # @return [Newgistics::ShipmentResponse] a lightweight wrapper around the xml response
-    def create_order_shipment(order, shipment)
-      self.last_request = OrderShipmentRequest.new(order, shipment)
+    def create_shipment(order, shipment)
+      self.last_request = ShipmentRequest.new(order, shipment)
       send_request('/post_shipments.aspx', ShipmentResponse)
     end
 

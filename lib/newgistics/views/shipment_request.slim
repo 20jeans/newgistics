@@ -1,6 +1,6 @@
 doctype xml
 Orders(apiKey=ENV['NEWGISTICS_KEY'])
-  Order(orderID="#{shipment.number} - #{shipment.shipments.first.id}")
+  Order(orderID=shipment.number)
     CustomerInfo
       - shipment.ship_address do |address|
         FirstName= address.first_name
@@ -23,4 +23,4 @@ Orders(apiKey=ENV['NEWGISTICS_KEY'])
       - shipment.line_items.each do |item|
         Item
           SKU= item.sku
-          Qty= item.quantity
+          Qty= item.qty

@@ -58,8 +58,8 @@ module Newgistics
     # @param order [Spree::Order] a Spree::Order object
     # @param shipment [Spree::Shipment] a Spree::Shipment object
     # @return [Newgistics::ShipmentResponse] a lightweight wrapper around the xml response
-    def create_shipment(order, shipment)
-      self.last_request = ShipmentRequest.new(order, shipment)
+    def create_shipment(order, shipment=nil)
+      self.last_request = ShipmentRequest.new(order, shipment || order.shipments.first)
       send_request('/post_shipments.aspx', ShipmentResponse)
     end
 

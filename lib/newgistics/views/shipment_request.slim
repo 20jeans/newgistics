@@ -3,8 +3,8 @@ Orders(apiKey=ENV['NEWGISTICS_KEY'])
   Order(orderID=shipment.number)
     CustomerInfo
       - shipment.ship_address do |address|
-        FirstName= address.first_name
-        LastName= address.last_name
+        FirstName= address.firstname
+        LastName= address.lastname
         Address1= address.address1
         Address2= address.address2
         City= address.city

@@ -2,19 +2,19 @@ doctype xml
 Orders(apiKey=ENV['NEWGISTICS_KEY'])
   Order(orderID=shipment.number)
     CustomerInfo
-      - shipment.ship_address do |address|
-        FirstName= address.firstname
-        LastName= address.lastname
-        Address1= address.address1
-        Address2= address.address2
-        City= address.city
-        State= address.state
-        Zip= address.postal_code
-        Country= address.country
-        Email= shipment.email
-        Phone= address.phone
-        IsResidential= (address.type == 'residential')
-    AllowDuplicate
+      - address = shipment.ship_address
+      FirstName= address.firstname
+      LastName= address.lastname
+      Address1= address.address1
+      Address2= address.address2
+      City= address.city
+      State= address.state
+      Zip= address.postal_code
+      Country= address.country
+      Email= shipment.email
+      Phone= address.phone
+      IsResidential= (address.type == 'residential')
+    AllowDuplicate yes
     OrderDate= shipment.completed_at.strftime('%m/%d/%Y')
     ShipMethod= shipment.ship_method
     InfoLine= shipment.options[:info]

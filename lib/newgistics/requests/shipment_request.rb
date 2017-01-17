@@ -14,7 +14,7 @@ module Newgistics
 
     def initialize(order, shipment)
       addr = order.shipping_address
-      self.shipment = Shipment.new(
+      @shipment = Shipment.new(
         number: "#{order.number} - #{shipment.id}",
         email:  order.email,
         completed_at: order.completed_at,

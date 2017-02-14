@@ -11,7 +11,7 @@ module Newgistics
     end
 
     # @return [String] the Return ID for the return
-    def order_id
+    def return_id
       doc.css('Return').attribute('ID')
     end
 

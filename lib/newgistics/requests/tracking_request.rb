@@ -13,7 +13,7 @@ module Newgistics
 
     def render(options = {})
       {
-        merchantID: ENV['NEWGISTICS_MID'],
+        merchantID: ENV['NEWGISTICS_MID'] || 'NGST',
         qualifier: @qualifier,
         searchStrings: [@number]
       }.to_json

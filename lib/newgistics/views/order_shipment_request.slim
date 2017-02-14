@@ -14,6 +14,9 @@ Orders(apiKey=ENV['NEWGISTICS_KEY'])
         Email= shipment.email
         Phone= address.phone
         IsResidential= (address.type == 'residential')
+    DropShipInfo
+      CompanyName
+        | [DSTLD]
     AllowDuplicate
     OrderDate= shipment.completed_at.strftime('%m/%d/%Y')
     ShipMethod= real_shipment.ship_method

@@ -8,7 +8,7 @@ module Newgistics
     # The base url for the production environment
     LIVE_URL = 'https://api.newgisticsfulfillment.com'.freeze
     REST_URL = 'https://api.newgistics.com'.freeze
-    TEST_REST_URL = 'https://api.newgistics.com'.freeze
+    TEST_REST_URL = 'https://apiint.newgistics.com'.freeze
 
     # A boolean to determine whether the client is in test mode
     attr_accessor :test
@@ -65,11 +65,12 @@ module Newgistics
 
     # Creates a new return in newgistics
     #
-    # @param rma [Newgistics::Return] a Newgistics::Return object
+    # @param rma [pree::ReturnAuthorization] a Spree::ReturnAuthorization object
+    # @param shipment [pree::Shipment] a Spree::ReturnAuthorization object
     # @return [Newgistics::ReturnResponse] a lightweight wrapper around the xml response
-    def create_return(rma)
-      self.last_request = ReturnRequest.new(rma)
-      send_request('/post_inbound_returns.aspx', ReturnResponse)
+    def create_return(rma, shipment=nil)
+      self.last_request = ReturnRequest.new(rma, shipment || order.shipments.first)
+      send_request('/post_inbound_returns.aspx', InboundReturnCreateResponse)
     end
 
     # Get a list of inbound returns in newgistics
@@ -125,6 +126,12 @@ module Newgistics
     def track_order(order_number, qualifier="OrderNumber")
       track_return(order_number, qualifier)
     end
+
+    def create_return_label(rma)
+      self.last_request = ReturnRestRequest.new(rma)
+      send_rest_request("/WebAPI/Shipment/", ShipmentRestResponse, restclient)
+    end
+
 
     # Get a list of shipments in newgistics
     #
@@ -208,11 +215,17 @@ module Newgistics
       cl.headers.merge!(last_request.headers)
       # return false unless last_request.valid?
       self.last_response = cl.post do |req|
-        req.params = {
-          key: ENV['NEWGISTICS_REST_KEY']
-        }
         req.url(path)
         req.body = last_request.render
+      end
+      response_class.new(last_response)
+    end
+
+    def get_rest_request(path, response_class, cl = restclient)
+      cl.headers.merge!(last_request.headers)
+      # return false unless last_request.valid?
+      self.last_response = cl.get do |req|
+        req.url(path)
       end
       response_class.new(last_response)
     end

@@ -69,7 +69,7 @@ module Newgistics
     # @param shipment [pree::Shipment] a Spree::ReturnAuthorization object
     # @return [Newgistics::ReturnResponse] a lightweight wrapper around the xml response
     def create_return(rma, shipment=nil)
-      self.last_request = ReturnRequest.new(rma, shipment || order.shipments.first)
+      self.last_request = ReturnRequest.new(rma, shipment || rma.order.shipments.first)
       send_request('/post_inbound_returns.aspx', InboundReturnCreateResponse)
     end
 

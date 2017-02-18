@@ -34,6 +34,7 @@ module Newgistics
   autoload :InboundReturnCreateResponse, "newgistics/responses/inbound_return_create_response"
   autoload :ReturnedItemResponse, "newgistics/responses/returned_item_response"
   autoload :ShipmentResponse, "newgistics/responses/shipment_response"
+  autoload :ShipmentRestResponse, "newgistics/responses/shipment_rest_response"
   autoload :ShippedItemResponse, "newgistics/responses/shipped_item_response"
   autoload :InventoryResponse, "newgistics/responses/inventory_response"
   autoload :InventoryProduct, "newgistics/responses/inventory_product"

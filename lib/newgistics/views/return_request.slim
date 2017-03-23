@@ -1,7 +1,7 @@
 doctype xml
 Returns(apiKey=ENV['NEWGISTICS_KEY'])
   Return(orderID="#{rma.order.number} - #{shipment.id}")
-    RMA= rma.number
+    RMA= shipment.id
     Comments= rma.memo
     Items
       - skus.each do |sku, quantity|

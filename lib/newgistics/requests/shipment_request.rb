@@ -14,13 +14,16 @@ module Newgistics
 
     def initialize(order, shipment)
       addr = order.shipping_address
+      digital_shipping_id = Spree::ShippingCategory.where(name: :digital).pluck(:id).first
       @shipment = Shipment.new(
         number: "#{order.number} - #{shipment.id}",
         email:  order.email,
         completed_at: order.completed_at,
         ship_address: Newgistics::Address.from_spree(order.shipping_address),
         ship_method: Spree::ShippingMethod.find(order.shipping_method_id).code,
-        line_items: order.line_items.map{|item| Newgistics::Product.from_spree(item)},
+        line_items: order.line_items
+          .select{|item| item.product.shipping_category_id != digital_shipping_id}
+          .map{|item| Newgistics::Product.from_spree(item)}
         )
     end
 

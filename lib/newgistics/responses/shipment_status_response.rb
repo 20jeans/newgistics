@@ -39,6 +39,12 @@ module Newgistics
     end
 
     # @return [Time] when the shipment left newgistics
+    def delivery_date
+      time = doc.css('DeliveredTimestamp').try(:text)
+      Time.parse(time) unless time.blank?
+    end
+
+    # @return [Time] when the shipment left newgistics
     def shipped_date
       time = doc.css('ShippedDate').try(:text)
       Time.parse(time) unless time.blank?

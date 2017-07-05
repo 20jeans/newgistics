@@ -15,7 +15,7 @@ Orders(apiKey=ENV['NEWGISTICS_KEY'])
       Phone= address.phone
       IsResidential= (address.type == 'residential')
     AllowDuplicate yes
-    OrderDate= shipment.completed_at.strftime('%m/%d/%Y')
+    OrderDate= (shipment.completed_at || Time.now).strftime('%m/%d/%Y')
     ShipMethod= shipment.ship_method
     InfoLine= shipment.options[:info]
     RequiresSignature= shipment.options[:signature]

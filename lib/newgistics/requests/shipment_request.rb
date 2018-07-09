@@ -21,9 +21,9 @@ module Newgistics
         completed_at: order.completed_at,
         ship_address: Newgistics::Address.from_spree(order.shipping_address),
         ship_method: Spree::ShippingMethod.find(shipment.selected_shipping_rate.shipping_method_id).code,
-        line_items: order.line_items
-          .select{|item| item.product.shipping_category_id != digital_shipping_id}
-          .map{|item| Newgistics::Product.from_spree(item)}
+        line_items: shipment.line_items
+          .select {|item| item.product.shipping_category_id != digital_shipping_id}
+          .map {|item| Newgistics::Product.from_spree(item)}
         )
     end
 
